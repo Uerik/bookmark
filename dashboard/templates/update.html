@@ -1,0 +1,37 @@
+{% extends "master.html" %}
+
+{% block title %}Update item{% endblock  %}
+
+{% block content %}
+
+<div class="container text-center">
+    <div class="row">
+      <div class="col-4">
+        
+      </div>
+      <div class="col-4">
+        <h1>Update item do Bookmark</h1>
+        {%for i in basicoLivro%}
+            {% if i.id == basicoLivroId.id%}
+                <form action="{% url 'update_item' i.id%}" method="POST">
+                    {% csrf_token %}
+                    <input class="form-control me-2" type="text" placeholder="{{i.titulo}}" name="livroTituloUpdate"><br>
+
+                    <input class="form-control me-2" type="number" name="livroPageUpdate" id="" placeholder="{{i.pagina}}"><br>
+
+                    <input class="form-control me-2" type="text" placeholder="{{i.obs}}" name="livroObsUpdate"><br>
+
+                    <input type="hidden" name="usuarioId" id="blah" value="{{request.user.id}}" ><br>
+                    <button class="btn btn-primary">Update item</button>
+                </form>
+            {%endif%}
+        {%endfor%}
+        
+      </div>
+      <div class="col-4">
+        
+      </div>
+    </div>
+  </div>
+
+{% endblock  %}
